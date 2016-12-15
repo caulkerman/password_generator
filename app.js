@@ -7,9 +7,13 @@ let checkNumbersNo = false;
 let checkDashesYes = false;
 let checkDashesNo = false;
 let characterNumber;
+
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 let charactersArray = ["A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
-let specialCharacters = []
+
+let specialCharacters = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "-", "_", "/", ":", ";", "<", ">", "=", "?", "@", "`", "~", '"', "^"];
+
 
 
 
@@ -87,7 +91,11 @@ function checkBoxDashesYes() {
 		document.getElementById("checkbox-dashes-no").checked = true;
 	} else {
 		checkDashesYes = true;
+		document.getElementById("dashes").innerHTML = '<p class="dashes">' + 'Dashes will be every five characters' + '</p>';
 		document.getElementById("checkbox-dashes-yes").checked = true;
+			setTimeout(function() {
+				document.getElementById("dashes").innerHTML = "Do you want to have dashes?";
+			}, 2500);
 		checkDashesNo = false;
 		document.getElementById("checkbox-dashes-no").checked = false;
 	};
@@ -100,7 +108,11 @@ function checkBoxDashesNo() {
 		checkDashesNo = false;
 		document.getElementById("checkbox-dashes-no").checked = false;
 		checkDashesYes = true;
+		document.getElementById("dashes").innerHTML = '<p class="dashes">' + 'Dashes will be every five characters' + '</p>';
 		document.getElementById("checkbox-dashes-yes").checked = true;
+		setTimeout(function() {
+				document.getElementById("dashes").innerHTML = "Do you want to have dashes?";
+			}, 2500);
 	} else {
 		checkDashesNo = true;
 		document.getElementById("checkbox-dashes-no").checked = true;
@@ -115,8 +127,14 @@ function checkBoxDashesNo() {
 function generatePassword(characterNumberId) {
 	characterNumber = document.getElementById(characterNumberId).value;
 	document.getElementById("new-password").innerHTML = characterNumber;
-	//Need to make it so it loops through both arrays, maybe a third.  Haven't decided how I want the passwords to look whether to be separated with dashes, but tending toward having a solid, single string.
+		if (checkCharactersYes) {
+		//call let charVar = charactersFunc() that loops through charactersArray and does stuff
+	}
 };
 
 
 
+function charactersFunc() {
+	//loop through the charactersArray
+	return something;
+}
