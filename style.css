@@ -1,20 +1,40 @@
-h1 {
-	color: blue;
+html {
+	font-family: sans-serif;
 }
 
-#characters {
-	height: 30px;
+p {
+	font-size: 1.15em;
+}
+
+h1 {
+	color: blue;
 }
 
 .new-password-div {
 	margin: 20px 0 20px 0;
 	width: 50%;
 	height: 50px;
-	/*background-color: tan;*/
+}
+
+#characterNumberId {
+	height: 40px;
+	/*border: none;*/
+	border-radius: 5px;
+	width: 150px;
+	font-size: 1.2em;
 }
 
 .submit-div {
 	margin: 20px 0 20px 0;
+}
+
+.submit-button {
+	font-size: 1.1em;
+	color: #ffffff;
+	height: 40px;
+	background-color: #29a329;
+	border-radius: 5px;
+	border: none;
 }
 
 .dashes {
