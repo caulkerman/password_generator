@@ -1,0 +1,18 @@
+h1 {
+	color: blue;
+}
+
+#characters {
+	height: 30px;
+}
+
+.new-password-div {
+	margin: 20px 0 20px 0;
+	width: 50%;
+	height: 50px;
+	/*background-color: tan;*/
+}
+
+.submit-div {
+	margin: 20px 0 20px 0;
+}

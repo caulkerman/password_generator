@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Password Generator</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Password Generator</h1>
+
+<p>How many characters long? Can be from 1 to 127 Characters</p>
+<input id="characterNumberId" type="number" min="1" max="127" autofocus>
+
+<p>Do you want to use special characters?</p>
+<!-- Maybe here we can add a section that will show up on demand that shows all available special characters and the use can sort through them and choose the ones wanted -->
+
+<input type="checkbox" id="checkbox-characters-yes" onClick="checkBoxCharactersYes()"/>Yes
+<input type="checkbox" id="checkbox-characters-no" onClick="checkBoxCharactersNo()"/>No
+
+<p>Do you want to use numbers?</p>
+<input type="checkbox" id="checkbox-numbers-yes" onClick="checkBoxNumbersYes()" />Yes
+<input type="checkbox" id="checkbox-numbers-no" onClick="checkBoxNumbersNo()" />No
+
+<p>Do you want to have dashes?</p>
+<p>Dashes will be every five characters</p> <!-- Make this paragraph show when user clicks "Yes" -->
+<input type="checkbox" id="checkbox-dashes-yes" onClick="checkBoxDashesYes()" />Yes
+<input type="checkbox" id="checkbox-dashes-no" onClick="checkBoxDashesNo()" />No
+
+	
+<div class="submit-div">
+	<input type="button" value="Generate Password" onClick="generatePassword('characterNumberId')">
+</div>
+<div class="new-password-div">
+	<p id="new-password">New password goes here.</p>
+</div>
+
+<hr/>
+
+<form onSubmit ="return checkForSelection();">
+	<select id ="states">
+		<option value ="" selected =" selected"> SELECT A STATE</option>
+		<option value =" AL"> Alabama </option>
+		<option value =" AK"> Alaska </option>
+		<option value =" AZ"> Arizona </option>
+		<option value =" AR"> Arkansas </option>
+	</select>&nbsp;&nbsp; 
+	<input type="submit" value="Submit Form">
+</form>
+
+Myers, Mark. A Smarter Way to Learn JavaScript: The new approach that uses technology to cut your effort in half (Kindle Locations 3441-3447).  . Kindle Edition. 
+<hr />
+
+
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
