@@ -7,12 +7,14 @@ let checkNumbersNo = false;
 let checkDashesYes = false;
 let checkDashesNo = false;
 let characterNumber;
+let newPassWord = "";
+console.warn("newPassWord length: ", newPassWord, newPassWord.length);
 
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-let charactersArray = ["A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
+let lettersArray = ["A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
 
-let specialCharacters = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "_", "/", ":", ";", "<", ">", "=", "?", "@", "`", "~", '"', "^"];
+let specialCharactersArray = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "_", "/", ":", ";", "<", ">", "=", "?", "@", "`", "~", '"', "^"];
 
 
 
@@ -125,17 +127,65 @@ function checkBoxDashesNo() {
 
 
 function generatePassword(characterNumberId) {
+	newPassWord = "";
 	characterNumber = document.getElementById(characterNumberId).value;
-	document.getElementById("new-password").innerHTML = characterNumber;
-		if (checkCharactersYes) {
-		//call let charVar = charactersFunc() that loops through charactersArray and does stuff
-	}
+	let forLoopNumber = 0;
+	for (var i = 0; i < characterNumber; i++) {
+		console.error("characterNumber: ", characterNumber);
+		forLoopNumber += 1;
+
+		
+		if (forLoopNumber <= characterNumber &&  newPassWord.length <= characterNumber) {
+			lettersFunc();
+			if (checkCharactersYes /*&& newPassWord.length < characterNumber*/) {
+				specialCharactersFunc();
+			};
+
+			if (checkNumbersYes /*&& newPassWord.length < characterNumber*/) {
+				numbersFunc();
+			}
+			console.log("The for loop number: ", forLoopNumber);
+			// if (forLoopNumber % 5 === 0 && checkDashesYes && newPassWord < characterNumber) {
+			
+			// };
+		};
+		if (newPassWord.length === characterNumber) {
+			break;
+		}	
+	console.warn("In the BIG function the new password: ", newPassWord, newPassWord.length);
+	document.getElementById("new-password").innerHTML = newPassWord;
 	document.getElementById("characterNumberId").value = "";
+	};
 };
 
 
 
-function charactersFunc() {
-	//loop through the charactersArray
-	return something;
+function lettersFunc() {
+	let randomNumber = Math.floor(Math.random() * lettersArray.length);
+	let randomLetter = lettersArray[randomNumber];
+	console.log("random letter: ", randomLetter);
+	newPassWord += randomLetter;
+	// return something;
+}
+
+function numbersFunc() {
+	let randomNumber = Math.floor(Math.random() * numbersArray.length);
+	let randomArrayNumber = numbersArray[randomNumber];
+	console.log("random array number: ", randomArrayNumber);
+	newPassWord += randomArrayNumber;
+	// return something;
+}
+
+function dashesFunc() {
+	newPassWord += "-";
+
+	// return something;
+}
+
+function specialCharactersFunc() {
+	let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
+	let randomCharacter = specialCharactersArray[randomNumber];
+	console.log("random character: ", randomCharacter);
+	newPassWord += randomCharacter;
+	// return something;
 }
