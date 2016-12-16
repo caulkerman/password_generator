@@ -136,22 +136,23 @@ function generatePassword(characterNumberId) {
 
 		
 		if (forLoopNumber <= characterNumber &&  newPassWord.length <= characterNumber) {
-			lettersFunc();
-			if (checkCharactersYes /*&& newPassWord.length < characterNumber*/) {
+			if (newPassWord.length < characterNumber) {
+				lettersFunc();
+			};
+			if (checkCharactersYes && newPassWord.length < characterNumber) {
 				specialCharactersFunc();
 			};
 
-			if (checkNumbersYes /*&& newPassWord.length < characterNumber*/) {
+			if (checkNumbersYes && newPassWord.length < characterNumber) {
 				numbersFunc();
-			}
+			};
 			console.log("The for loop number: ", forLoopNumber);
 			// if (forLoopNumber % 5 === 0 && checkDashesYes && newPassWord < characterNumber) {
 			
 			// };
 		};
-		if (newPassWord.length === characterNumber) {
-			break;
-		}	
+
+
 	console.warn("In the BIG function the new password: ", newPassWord, newPassWord.length);
 	document.getElementById("new-password").innerHTML = newPassWord;
 	document.getElementById("characterNumberId").value = "";
