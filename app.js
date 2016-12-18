@@ -14,7 +14,7 @@ let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 let lettersArray = ["A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
 
-let specialCharactersArray = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "_", "/", ":", ";", "<", ">", "=", "?", "@", "`", "~", '"', "^"];
+let specialCharactersArray = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "_", "/", ":", ";", "=", "@", "`", "~", '"', "^"];
 
 
 
@@ -131,11 +131,12 @@ function generatePassword(characterNumberId) {
 	characterNumber = document.getElementById(characterNumberId).value;
 	let forLoopNumber = 0;
 	for (var i = 0; i < characterNumber; i++) {
-		console.error("characterNumber: ", characterNumber);
+		// console.error("characterNumber: ", characterNumber);
 		forLoopNumber += 1;
 
 		
 		if (forLoopNumber <= characterNumber &&  newPassWord.length <= characterNumber) {
+			
 			if (newPassWord.length < characterNumber) {
 				lettersFunc();
 			};
@@ -151,12 +152,10 @@ function generatePassword(characterNumberId) {
 			
 			// };
 		};
-
-
-	console.warn("In the BIG function the new password: ", newPassWord, newPassWord.length);
-	document.getElementById("new-password").innerHTML = newPassWord;
-	document.getElementById("characterNumberId").value = "";
 	};
+	document.getElementById("characterNumberId").value = "";
+	document.getElementById("new-password").innerHTML = newPassWord;
+	console.warn("In the BIG function the new password: ", newPassWord, newPassWord.length);
 };
 
 
@@ -164,7 +163,7 @@ function generatePassword(characterNumberId) {
 function lettersFunc() {
 	let randomNumber = Math.floor(Math.random() * lettersArray.length);
 	let randomLetter = lettersArray[randomNumber];
-	console.log("random letter: ", randomLetter);
+	// console.log("random letter: ", randomLetter);
 	newPassWord += randomLetter;
 	// return something;
 }
@@ -172,7 +171,7 @@ function lettersFunc() {
 function numbersFunc() {
 	let randomNumber = Math.floor(Math.random() * numbersArray.length);
 	let randomArrayNumber = numbersArray[randomNumber];
-	console.log("random array number: ", randomArrayNumber);
+	// console.log("random array number: ", randomArrayNumber);
 	newPassWord += randomArrayNumber;
 	// return something;
 }
@@ -186,7 +185,7 @@ function dashesFunc() {
 function specialCharactersFunc() {
 	let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
 	let randomCharacter = specialCharactersArray[randomNumber];
-	console.log("random character: ", randomCharacter);
+	// console.log("random character: ", randomCharacter);
 	newPassWord += randomCharacter;
 	// return something;
 }
