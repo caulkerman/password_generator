@@ -8,6 +8,7 @@ let checkDashesYes = false;
 let checkDashesNo = false;
 let characterNumber;
 let newPassWord = "";
+let forLoopNumber = 0;
 console.warn("newPassWord length: ", newPassWord, newPassWord.length);
 
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -27,6 +28,13 @@ function checkBoxCharactersYes() {
 		document.getElementById("checkbox-characters-yes").checked = false;
 		checkCharactersNo = true;
 		document.getElementById("checkbox-characters-no").checked = true;
+		for (let i = 0; i < funcArray.length; i++) {
+			if (funcArray[i] === specialCharactersFunc) {
+				funcArray.splice([i], 1);
+				break;
+			};
+		};
+		console.log("funcArray: ", funcArray);
 	} else {
 		checkCharactersYes = true;
 		document.getElementById("checkbox-characters-yes").checked = true;
@@ -46,14 +54,15 @@ function checkBoxCharactersNo() {
 		document.getElementById("checkbox-characters-no").checked = false;
 		checkCharactersYes = true;
 		document.getElementById("checkbox-characters-yes").checked = true;
-
+		funcArray.push(specialCharactersFunc);
+		console.log("funcArray: ", funcArray);
 	} else {
 		checkCharactersNo = true;
 		document.getElementById("checkbox-characters-no").checked = true;
 		checkCharactersYes = false;
 		document.getElementById("checkbox-characters-yes").checked = false;
 		for (let i = 0; i < funcArray.length; i++) {
-			if (funcArray[i] = specialCharactersFunc) {
+			if (funcArray[i] === specialCharactersFunc) {
 				funcArray.splice([i], 1);
 				break;
 			};
@@ -70,6 +79,13 @@ function checkBoxNumbersYes() {
 		document.getElementById("checkbox-numbers-yes").checked = false;
 		checkNumbersNo = true;
 		document.getElementById("checkbox-numbers-no").checked = true;
+		for (let i = 0; i < funcArray.length; i++) {
+			if (funcArray[i] === numbersFunc) {
+				funcArray.splice([i], 1);
+				break;
+			};
+		};
+		console.log("funcArray: ", funcArray);
 	} else {
 		checkNumbersYes = true;
 		document.getElementById("checkbox-numbers-yes").checked = true;
@@ -88,13 +104,15 @@ function checkBoxNumbersNo() {
 		document.getElementById("checkbox-numbers-no").checked = false;
 		checkNumbersYes = true;
 		document.getElementById("checkbox-numbers-yes").checked = true;
+		funcArray.push(numbersFunc);
+		console.log("funcArray: ", funcArray);
 	} else {
 		checkNumbersNo = true;
 		document.getElementById("checkbox-numbers-no").checked = true;
 		checkNumbersYes = false;
 		document.getElementById("checkbox-numbers-yes").checked = false;
 		for (let i = 0; i < funcArray.length; i++) {
-			if (funcArray[i] = numbersFunc) {
+			if (funcArray[i] === numbersFunc) {
 				funcArray.splice([i], 1);
 				break;
 			};
@@ -111,6 +129,13 @@ function checkBoxDashesYes() {
 		document.getElementById("checkbox-dashes-yes").checked = false;
 		checkDashesNo = true;
 		document.getElementById("checkbox-dashes-no").checked = true;
+		for (let i = 0; i < funcArray.length; i++) {
+			if (funcArray[i] === dashesFunc) {
+				funcArray.splice([i], 1);
+				break;
+			};
+		};
+		console.log("funcArray: ", funcArray);
 	} else {
 		checkDashesYes = true;
 		document.getElementById("dashes").innerHTML = '<p class="dashes">' + 'Dashes will be every five characters' + '</p>';
@@ -137,13 +162,15 @@ function checkBoxDashesNo() {
 		setTimeout(function() {
 				document.getElementById("dashes").innerHTML = "Do you want to have dashes?";
 			}, 2500);
+		funcArray.push(dashesFunc);
+		console.log("funcArray: ", funcArray);
 	} else {
 		checkDashesNo = true;
 		document.getElementById("checkbox-dashes-no").checked = true;
 		checkDashesYes = false;
 		document.getElementById("checkbox-dashes-yes").checked = false;
 		for (let i = 0; i < funcArray.length; i++) {
-			if (funcArray[i] = dashesFunc) {
+			if (funcArray[i] === dashesFunc) {
 				funcArray.splice([i], 1);
 				break;
 			};
@@ -158,7 +185,6 @@ function checkBoxDashesNo() {
 function generatePassword(characterNumberId) {
 	newPassWord = "";
 	characterNumber = document.getElementById(characterNumberId).value;
-	let forLoopNumber = 0;
 
 	for (var i = 0; i < characterNumber; i++) {
 		// console.error("characterNumber: ", characterNumber);
@@ -169,14 +195,6 @@ function generatePassword(characterNumberId) {
 			//put the Math.random function here
 			let randomNumber = Math.floor(Math.random() * funcArray.length);
 			funcArray[randomNumber]();
-				// lettersFunc();
-				// specialCharactersFunc();
-				// numbersFunc();
-			
-			// console.log("The for loop number: ", forLoopNumber);
-			// if (forLoopNumber % 5 === 0 && checkDashesYes && newPassWord < characterNumber) {
-			
-			// };
 		};
 	};
 	document.getElementById("characterNumberId").value = "";
@@ -187,7 +205,6 @@ function generatePassword(characterNumberId) {
 
 
 let lettersFunc = function() {
-
 	if (newPassWord.length < characterNumber) {
 		let randomNumber = Math.floor(Math.random() * lettersArray.length);
 		let randomLetter = lettersArray[randomNumber];
@@ -196,6 +213,8 @@ let lettersFunc = function() {
 	};
 };
 funcArray.push(lettersFunc);
+console.log(funcArray);
+
 
 let numbersFunc = function() {
 	if (checkNumbersYes && newPassWord.length < characterNumber) {
@@ -210,12 +229,12 @@ let numbersFunc = function() {
 
 let dashesFunc = function() {
 	newPassWord += "-";
+	console.log("the forLoopNumber: ", forLoopNumber);
 
 	// return something;
 };
 
 let specialCharactersFunc = function() {
-
 	if (checkCharactersYes && newPassWord.length < characterNumber) {
 		let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
 		let randomCharacter = specialCharactersArray[randomNumber];
@@ -227,35 +246,3 @@ let specialCharactersFunc = function() {
 
 
 
-
-
-
-// let funcArray = [];
-
-// let hello = function() {
-//   console.log("Console.log: Hello");
-// };
-
-// let hola = function() {
-//   console.log("Console.log: Hola");
-// };
-
-// let bye = function() {
-//   console.log("Console.log: Good-bye");
-// };
-
-// function addToArray() {
-//   funcArray.push(hello);
-//   funcArray.push(hola);
-//   funcArray.push(bye);
-//   callFuncsInArray();
-// };
-
-// function callFuncsInArray() {
-//   let i;
-//   for (i = 0; i < funcArray.length; i++) {
-//     funcArray[i]();
-//   };;
-// };
-
-// addToArray()
