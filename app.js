@@ -8,7 +8,7 @@ let checkDashesYes = false;
 let checkDashesNo = false;
 let characterNumber;
 let newPassWord = "";
-let forLoopNumber = 0;
+let forLoopNumber;
 console.warn("newPassWord length: ", newPassWord, newPassWord.length);
 
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -183,12 +183,14 @@ function checkBoxDashesNo() {
 
 
 function generatePassword(characterNumberId) {
+	forLoopNumber = 0;
 	newPassWord = "";
 	characterNumber = document.getElementById(characterNumberId).value;
 
 	for (var i = 0; i < characterNumber; i++) {
 		// console.error("characterNumber: ", characterNumber);
 		forLoopNumber += 1;
+		// console.log("the forLoopNumber: ", forLoopNumber);
 
 		if (forLoopNumber <= characterNumber &&  newPassWord.length <= characterNumber) {
 			
