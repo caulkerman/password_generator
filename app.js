@@ -129,13 +129,13 @@ function checkBoxDashesYes() {
 		document.getElementById("checkbox-dashes-yes").checked = false;
 		checkDashesNo = true;
 		document.getElementById("checkbox-dashes-no").checked = true;
-		for (let i = 0; i < funcArray.length; i++) {
-			if (funcArray[i] === dashesFunc) {
-				funcArray.splice([i], 1);
-				break;
-			};
-		};
-		console.log("funcArray: ", funcArray);
+		// for (let i = 0; i < funcArray.length; i++) {
+		// 	if (funcArray[i] === dashesFunc) {
+		// 		funcArray.splice([i], 1);
+		// 		break;
+		// 	};
+		// };
+		// console.log("funcArray: ", funcArray);
 	} else {
 		checkDashesYes = true;
 		document.getElementById("dashes").innerHTML = '<p class="dashes">' + 'Dashes will be every five characters' + '</p>';
@@ -145,8 +145,8 @@ function checkBoxDashesYes() {
 			}, 2500);
 		checkDashesNo = false;
 		document.getElementById("checkbox-dashes-no").checked = false;
-		funcArray.push(dashesFunc);
-		console.log("funcArray: ", funcArray);
+		// funcArray.push(dashesFunc);
+		// console.log("funcArray: ", funcArray);
 	};
 	// console.log("checkDashesYes value: ", checkDashesYes);
 	// console.log("checkDashesNo value: ", checkDashesNo);
@@ -162,20 +162,20 @@ function checkBoxDashesNo() {
 		setTimeout(function() {
 				document.getElementById("dashes").innerHTML = "Do you want to have dashes?";
 			}, 2500);
-		funcArray.push(dashesFunc);
-		console.log("funcArray: ", funcArray);
+		// funcArray.push(dashesFunc);
+		// console.log("funcArray: ", funcArray);
 	} else {
 		checkDashesNo = true;
 		document.getElementById("checkbox-dashes-no").checked = true;
 		checkDashesYes = false;
 		document.getElementById("checkbox-dashes-yes").checked = false;
-		for (let i = 0; i < funcArray.length; i++) {
-			if (funcArray[i] === dashesFunc) {
-				funcArray.splice([i], 1);
-				break;
-			};
-		};
-		console.log("funcArray: ", funcArray);
+	// 	for (let i = 0; i < funcArray.length; i++) {
+	// 		if (funcArray[i] === dashesFunc) {
+	// 			funcArray.splice([i], 1);
+	// 			break;
+	// 		};
+	// 	};
+	// 	console.log("funcArray: ", funcArray);
 	};
 	// console.log("checkDashesNo value: ", checkDashesNo);
 	// console.log("checkDashesYes value: ", checkDashesYes);
@@ -188,15 +188,14 @@ function generatePassword(characterNumberId) {
 	characterNumber = document.getElementById(characterNumberId).value;
 
 	for (var i = 0; i < characterNumber; i++) {
-		// console.error("characterNumber: ", characterNumber);
 		forLoopNumber += 1;
 		// console.log("the forLoopNumber: ", forLoopNumber);
 
 		if (forLoopNumber <= characterNumber &&  newPassWord.length <= characterNumber) {
 			
-			//put the Math.random function here
 			let randomNumber = Math.floor(Math.random() * funcArray.length);
 			funcArray[randomNumber]();
+			dashesFunc();
 		};
 	};
 	document.getElementById("characterNumberId").value = "";
@@ -225,26 +224,24 @@ let numbersFunc = function() {
 			// console.log("random array number: ", randomArrayNumber);
 		newPassWord += randomArrayNumber;
 	};
-
-	// return something;
 };
 
 let dashesFunc = function() {
+	let modulusNumber = forLoopNumber % 5;
+	if (checkDashesYes && modulusNumber === 0 && newPassWord.length < characterNumber) {
 	newPassWord += "-";
+	};
 	console.log("the forLoopNumber: ", forLoopNumber);
-
-	// return something;
 };
 
 let specialCharactersFunc = function() {
 	if (checkCharactersYes && newPassWord.length < characterNumber) {
 		let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
 		let randomCharacter = specialCharactersArray[randomNumber];
-		// console.log("random character: ", randomCharacter);
 		newPassWord += randomCharacter;
 	};
-	// return something;
 };
+
 
 
 
