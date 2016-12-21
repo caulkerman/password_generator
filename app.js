@@ -159,23 +159,20 @@ function generatePassword(characterNumberId) {
 	newPassWord = "";
 	characterNumber = document.getElementById(characterNumberId).value;
 	let forLoopNumber = 0;
+
 	for (var i = 0; i < characterNumber; i++) {
 		// console.error("characterNumber: ", characterNumber);
 		forLoopNumber += 1;
 
-		
 		if (forLoopNumber <= characterNumber &&  newPassWord.length <= characterNumber) {
 			
-			if (newPassWord.length < characterNumber) {
-				lettersFunc();
-			};
-			if (checkCharactersYes && newPassWord.length < characterNumber) {
-				specialCharactersFunc();
-			};
-
-			if (checkNumbersYes && newPassWord.length < characterNumber) {
-				numbersFunc();
-			};
+			//put the Math.random function here
+			let randomNumber = Math.floor(Math.random() * funcArray.length);
+			funcArray[randomNumber]();
+				// lettersFunc();
+				// specialCharactersFunc();
+				// numbersFunc();
+			
 			// console.log("The for loop number: ", forLoopNumber);
 			// if (forLoopNumber % 5 === 0 && checkDashesYes && newPassWord < characterNumber) {
 			
@@ -190,19 +187,24 @@ function generatePassword(characterNumberId) {
 
 
 let lettersFunc = function() {
-	let randomNumber = Math.floor(Math.random() * lettersArray.length);
-	let randomLetter = lettersArray[randomNumber];
-	// console.log("random letter: ", randomLetter);
-	newPassWord += randomLetter;
-	// return something;
-}
+
+	if (newPassWord.length < characterNumber) {
+		let randomNumber = Math.floor(Math.random() * lettersArray.length);
+		let randomLetter = lettersArray[randomNumber];
+		// console.log("random letter: ", randomLetter);
+		newPassWord += randomLetter;
+	};
+};
 funcArray.push(lettersFunc);
 
 let numbersFunc = function() {
-	let randomNumber = Math.floor(Math.random() * numbersArray.length);
-	let randomArrayNumber = numbersArray[randomNumber];
-	// console.log("random array number: ", randomArrayNumber);
-	newPassWord += randomArrayNumber;
+	if (checkNumbersYes && newPassWord.length < characterNumber) {
+		let randomNumber = Math.floor(Math.random() * numbersArray.length);
+		let randomArrayNumber = numbersArray[randomNumber];
+			// console.log("random array number: ", randomArrayNumber);
+		newPassWord += randomArrayNumber;
+	};
+
 	// return something;
 };
 
@@ -213,10 +215,13 @@ let dashesFunc = function() {
 };
 
 let specialCharactersFunc = function() {
-	let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
-	let randomCharacter = specialCharactersArray[randomNumber];
-	// console.log("random character: ", randomCharacter);
-	newPassWord += randomCharacter;
+
+	if (checkCharactersYes && newPassWord.length < characterNumber) {
+		let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
+		let randomCharacter = specialCharactersArray[randomNumber];
+		// console.log("random character: ", randomCharacter);
+		newPassWord += randomCharacter;
+	};
 	// return something;
 };
 
