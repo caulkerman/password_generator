@@ -211,6 +211,10 @@ let lettersFunc = function() {
 		let randomLetter = lettersArray[randomNumber];
 		// console.log("random letter: ", randomLetter);
 		newPassWord += randomLetter;
+		//need to loop through the vowels array and if() it is less than characterNumber run the loop how many times the randomizer that I still need to create tells me to.  if() the randomized number is 1 have it randomize again, and if it is 2 finish the loop and the whole function.
+			//loop through do some randomizing with the vowelsArray
+		//}
+		//if ()
 	};
 };
 funcArray.push(lettersFunc);
