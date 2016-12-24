@@ -1,5 +1,5 @@
 html {
-	font-family: sans-serif;
+	/*font-family: sans-serif;*/
 }
 
 p {
@@ -39,4 +39,6 @@ h1 {
 
 .dashes {
 	color: red;
+	font-size: 1.15em;
+	font-family: "Times New Roman", Times, serif;
 }
