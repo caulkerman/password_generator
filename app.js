@@ -195,7 +195,7 @@ function generatePassword(characterNumberId) {
 			
 			let randomNumber = Math.floor(Math.random() * funcArray.length);
 			funcArray[randomNumber]();
-			dashesFunc();
+			// dashesFunc();
 		};
 	};
 	document.getElementById("characterNumberId").value = "";
@@ -211,10 +211,31 @@ let lettersFunc = function() {
 		let randomLetter = lettersArray[randomNumber];
 		// console.log("random letter: ", randomLetter);
 		newPassWord += randomLetter;
-		//need to loop through the vowels array and if() it is less than characterNumber run the loop how many times the randomizer that I still need to create tells me to.  if() the randomized number is 1 have it randomize again, and if it is 2 finish the loop and the whole function.
-			//loop through do some randomizing with the vowelsArray
-		//}
-		//if ()
+
+		if (characterNumber - newPassWord.length > 1) {
+			for (let i = 0; i < 2; i++) {
+				let randomNumber = Math.floor(Math.random() * vowelsArray.length);
+				let randomVowel = vowelsArray[randomNumber];
+				newPassWord += randomVowel;
+				// if (randomVowel === "y" || "Y") {
+				// 	break;
+				// }
+				let modulusNumber = newPassWord.length % 5;
+				console.log("the modulusNumber: ", modulusNumber);
+				console.log("the newPassWord length: ", newPassWord.length);
+				if (modulusNumber === 0 && checkDashesYes) {
+					newPassWord += "-";
+					console.warn("yay");
+					break;
+				}
+			};
+		} else {
+			if (characterNumber - newPassWord.length === 1) {
+			let randomNumber = Math.floor(Math.random() * vowelsArray.length);
+			let randomVowel = vowelsArray[randomNumber];
+			newPassWord += randomVowel;
+			};
+		};
 	};
 };
 funcArray.push(lettersFunc);
@@ -231,11 +252,11 @@ let numbersFunc = function() {
 };
 
 let dashesFunc = function() {
-	let modulusNumber = forLoopNumber % 5;
+	let modulusNumber = newPassWord.length % 5;
 	if (checkDashesYes && modulusNumber === 0 && newPassWord.length < characterNumber) {
 	newPassWord += "-";
 	};
-	console.log("the forLoopNumber: ", forLoopNumber);
+	// console.log("the forLoopNumber: ", forLoopNumber);
 };
 
 let specialCharactersFunc = function() {
