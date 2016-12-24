@@ -211,29 +211,34 @@ let lettersFunc = function() {
 		let randomLetter = lettersArray[randomNumber];
 		// console.log("random letter: ", randomLetter);
 		newPassWord += randomLetter;
+		dashesFunc();
+		console.log("newPassWord.length: ", newPassWord.length);
 
 		if (characterNumber - newPassWord.length > 1) {
 			for (let i = 0; i < 2; i++) {
 				let randomNumber = Math.floor(Math.random() * vowelsArray.length);
 				let randomVowel = vowelsArray[randomNumber];
 				newPassWord += randomVowel;
+				dashesFunc();
 				// if (randomVowel === "y" || "Y") {
 				// 	break;
 				// }
-				let modulusNumber = newPassWord.length % 5;
-				console.log("the modulusNumber: ", modulusNumber);
-				console.log("the newPassWord length: ", newPassWord.length);
-				if (modulusNumber === 0 && checkDashesYes) {
-					newPassWord += "-";
-					console.warn("yay");
-					break;
-				}
+				// let modulusNumber = newPassWord.length % 5;
+				// console.log("the modulusNumber: ", modulusNumber);
+				// console.log("the newPassWord length: ", newPassWord.length);
+				// if (modulusNumber === 0 && checkDashesYes) {
+				// 	newPassWord += "-";
+				// 	console.log("new password length: ", newPassWord.length);
+				// 	console.warn("yay");
+				// 	break;
+				// }
 			};
 		} else {
 			if (characterNumber - newPassWord.length === 1) {
 			let randomNumber = Math.floor(Math.random() * vowelsArray.length);
 			let randomVowel = vowelsArray[randomNumber];
 			newPassWord += randomVowel;
+			dashesFunc();
 			};
 		};
 	};
@@ -248,11 +253,12 @@ let numbersFunc = function() {
 		let randomArrayNumber = numbersArray[randomNumber];
 			// console.log("random array number: ", randomArrayNumber);
 		newPassWord += randomArrayNumber;
+		dashesFunc();
 	};
 };
 
 let dashesFunc = function() {
-	let modulusNumber = newPassWord.length % 5;
+	let modulusNumber = newPassWord.length % 6;
 	if (checkDashesYes && modulusNumber === 0 && newPassWord.length < characterNumber) {
 	newPassWord += "-";
 	};
@@ -264,8 +270,19 @@ let specialCharactersFunc = function() {
 		let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
 		let randomCharacter = specialCharactersArray[randomNumber];
 		newPassWord += randomCharacter;
+		dashesFunc();
 	};
 };
+
+// function addDashes() {
+// 	let modulusNumber = newPassWord.length % 5;
+// 	if (modulusNumber === 0 && checkDashesYes) {
+// 		newPassWord += "-";
+// 		console.log("new password length: ", newPassWord.length);
+// 		console.warn("yay");
+// 	};
+// };
+
 
 
 
