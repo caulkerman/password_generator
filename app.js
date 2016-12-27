@@ -1,5 +1,6 @@
 "use strict"
 
+console.log("WELCOME TO THE PASSWORD GENERATOR")
 let checkCharactersYes = false;
 let checkCharactersNo = false;
 let checkNumbersYes = false;
@@ -7,9 +8,10 @@ let checkNumbersNo = false;
 let checkDashesYes = false;
 let checkDashesNo = false;
 let forLoopNumber;
-let inputtedNumber;
+let inputtedNumber; 
+let tempNewPassWord = "";
 let newPassWord = "";
-console.warn("newPassWord length: ", newPassWord, newPassWord.length);
+// console.warn("newPassWord length: ", newPassWord, newPassWord.length);
 
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -34,7 +36,7 @@ function checkBoxCharactersYes() {
 				break;
 			};
 		};
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	} else {
 		checkCharactersYes = true;
 		document.getElementById("checkbox-characters-yes").checked = true;
@@ -42,7 +44,7 @@ function checkBoxCharactersYes() {
 		checkCharactersNo = false;
 		document.getElementById("checkbox-characters-no").checked = false;
 		funcArray.push(specialCharactersFunc);
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	};
 
 };
@@ -55,7 +57,7 @@ function checkBoxCharactersNo() {
 		document.getElementById("checkbox-characters-yes").checked = true;
 		//function call
 		funcArray.push(specialCharactersFunc);
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	} else {
 		checkCharactersNo = true;
 		document.getElementById("checkbox-characters-no").checked = true;
@@ -67,7 +69,7 @@ function checkBoxCharactersNo() {
 				break;
 			};
 		};
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	};
 };
 
@@ -83,14 +85,14 @@ function checkBoxNumbersYes() {
 				break;
 			};
 		};
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	} else {
 		checkNumbersYes = true;
 		document.getElementById("checkbox-numbers-yes").checked = true;
 		checkNumbersNo = false;
 		document.getElementById("checkbox-numbers-no").checked = false;
 		funcArray.push(numbersFunc);
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	};
 };
 
@@ -101,7 +103,7 @@ function checkBoxNumbersNo() {
 		checkNumbersYes = true;
 		document.getElementById("checkbox-numbers-yes").checked = true;
 		funcArray.push(numbersFunc);
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	} else {
 		checkNumbersNo = true;
 		document.getElementById("checkbox-numbers-no").checked = true;
@@ -113,7 +115,7 @@ function checkBoxNumbersNo() {
 				break;
 			};
 		};
-		console.log("funcArray: ", funcArray);
+		// console.log("funcArray: ", funcArray);
 	};
 };
 
@@ -159,15 +161,34 @@ function generatePassword(characterNumberId) {
 	newPassWord = "";
 	inputtedNumber = document.getElementById(characterNumberId).value;
 
-	for (var i = 0; i < inputtedNumber; i++) {
+	if (checkDashesYes) {
+		for (let i = 0; i < 5; i++) {
 
-		if (forLoopNumber <= inputtedNumber &&  newPassWord.length <= inputtedNumber) {
-			
-			let randomNumber = Math.floor(Math.random() * funcArray.length);
-			funcArray[randomNumber]();
+			if (forLoopNumber <= inputtedNumber &&  newPassWord.length <= inputtedNumber) {
+				
+				let randomNumber = Math.floor(Math.random() * funcArray.length);
+				funcArray[randomNumber]();
+			};
+			forLoopNumber += 1;
+			console.log("for loop number dashes checked Yes: ", forLoopNumber);
+		}
+	} else {
+		for (let i = 0; i < inputtedNumber; i++) {
+
+			if (forLoopNumber <= inputtedNumber &&  newPassWord.length <= inputtedNumber) {
+				
+				let randomNumber = Math.floor(Math.random() * funcArray.length);
+				funcArray[randomNumber]();
+			};
+			forLoopNumber += 1;
+			console.log("for loop number dashes checked No: ", forLoopNumber)
 		};
-	};
+	}
+
+
+	
 	noInputWarning();
+
 };
 
 
@@ -176,9 +197,18 @@ let lettersFunc = function() {
 	if (newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * lettersArray.length);
 		let randomLetter = lettersArray[randomNumber];
-		newPassWord += randomLetter;
-		dashesFunc();
+		
 
+		if (checkDashesYes) {
+			tempNewPassWord += randomLetter;
+			dashesFunc();
+		} else {
+			newPassWord += randomLetter;
+			dashesFunc();
+		}
+		
+
+		
 		if (inputtedNumber - newPassWord.length > 1) {
 			for (let i = 0; i < 2; i++) {
 				let randomNumber = Math.floor(Math.random() * vowelsArray.length);
@@ -186,37 +216,54 @@ let lettersFunc = function() {
 				
 				let splitNewPassword = newPassWord.split("");
 				
-				if (splitNewPassword[splitNewPassword.length -1] === "y" || splitNewPassword[splitNewPassword.length -1 === "Y"]) {
-					break;
-				}
-				newPassWord += randomVowel;
-				dashesFunc();
+					if (splitNewPassword[splitNewPassword.length -1] === "y" || splitNewPassword[splitNewPassword.length -1 === "Y"]) {
+						break;
+					}
 				
+					if (checkDashesYes) {
+						tempNewPassWord += randomVowel;
+						dashesFunc()
+					} else {
+						newPassWord += randomVowel;
+						dashesFunc();
+					}	
 			};
 		} else { //this makes sure if there is only room for one more letter that only one more will be used.
 			if (inputtedNumber - newPassWord.length === 1) {
-			let randomNumber = Math.floor(Math.random() * vowelsArray.length);
-			let randomVowel = vowelsArray[randomNumber];
-			newPassWord += randomVowel;
-			dashesFunc();
+				let randomNumber = Math.floor(Math.random() * vowelsArray.length);
+				let randomVowel = vowelsArray[randomNumber];
+			
+				if (checkDashesYes) {
+					tempNewPassWord += randomVowel;
+				} else {
+					newPassWord += randomVowel;
+					dashesFunc();
+				};
 			};
 		};
 	};
 };
 funcArray.push(lettersFunc);
-console.log(funcArray);
+// console.log(funcArray);
 
 
 let numbersFunc = function() {
 	if (checkNumbersYes && newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * numbersArray.length);
 		let randomArrayNumber = numbersArray[randomNumber];
-		newPassWord += randomArrayNumber;
-		dashesFunc();
+
+		if (checkDashesYes) {
+			tempNewPassWord += randomArrayNumber;
+			dashesFunc();
+		} else {
+			newPassWord += randomArrayNumber;
+			dashesFunc();
+		};
 	};
 };
 
 let dashesFunc = function() {
+	console.log("the tempNewPassWord: ", tempNewPassWord, "and length: ", tempNewPassWord.length);
 	let modulusNumber1 = newPassWord.length % 5;
 	if (checkDashesYes && modulusNumber1 === 0 && newPassWord.length < inputtedNumber) {
 	newPassWord += "-";
@@ -227,8 +274,14 @@ let specialCharactersFunc = function() {
 	if (checkCharactersYes && newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
 		let randomCharacter = specialCharactersArray[randomNumber];
-		newPassWord += randomCharacter;
-		dashesFunc();
+
+		if (checkDashesYes) {
+			tempNewPassWord += randomCharacter;
+			dashesFunc();
+		} else {
+			newPassWord += randomCharacter;
+			dashesFunc();
+		};
 	};
 };
 
@@ -242,7 +295,7 @@ function noInputWarning() {
 		}, 2000);
 	} else {
 		document.getElementById("new-password").innerHTML = '<p id="the-new-password">' + newPassWord + '</p>';
-		console.warn("In the BIG function the new password: ", newPassWord, newPassWord.length);
+		console.warn("The new password: ", newPassWord,".  The new password length: ", newPassWord.length);
 	}
 }
 
