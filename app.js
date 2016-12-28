@@ -156,45 +156,32 @@ function checkBoxDashesNo() {
 };
 
 
-function generatePassword(characterNumberId) {
+function generatePassword() {
+	// debugger;
 	forLoopNumber = 0;
 	newPassWord = "";
-	inputtedNumber = document.getElementById(characterNumberId).value;
+	inputtedNumber = document.getElementById("characterNumberId").value;
 
-	if (checkDashesYes) {
-		for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < inputtedNumber; i++) {
 
-			if (forLoopNumber <= inputtedNumber &&  newPassWord.length <= inputtedNumber) {
+		if (forLoopNumber <= inputtedNumber &&  newPassWord.length <= inputtedNumber) {
 				
-				let randomNumber = Math.floor(Math.random() * funcArray.length);
-				funcArray[randomNumber]();
-			};
-			forLoopNumber += 1;
-			console.log("for loop number dashes checked Yes: ", forLoopNumber);
-		}
-	} else {
-		for (let i = 0; i < inputtedNumber; i++) {
-
-			if (forLoopNumber <= inputtedNumber &&  newPassWord.length <= inputtedNumber) {
-				
-				let randomNumber = Math.floor(Math.random() * funcArray.length);
-				funcArray[randomNumber]();
-			};
-			forLoopNumber += 1;
-			console.log("for loop number dashes checked No: ", forLoopNumber)
+			let randomNumber = Math.floor(Math.random() * funcArray.length);
+			funcArray[randomNumber]();
 		};
-	}
-
-
-	
+		forLoopNumber += 1;
+		console.log("tempPassword in generatePassword: ", tempNewPassWord);
+			// console.log("for loop number dashes checked No: ", forLoopNumber)
+	};	
 	noInputWarning();
-
+	// forLoopNumber = 0;
 };
 
 
 
 let lettersFunc = function() {
 	if (newPassWord.length < inputtedNumber) {
+		console.log("the inputtedNumber: ", inputtedNumber);
 		let randomNumber = Math.floor(Math.random() * lettersArray.length);
 		let randomLetter = lettersArray[randomNumber];
 		
@@ -205,9 +192,7 @@ let lettersFunc = function() {
 		} else {
 			newPassWord += randomLetter;
 			dashesFunc();
-		}
-		
-
+		};
 		
 		if (inputtedNumber - newPassWord.length > 1) {
 			for (let i = 0; i < 2; i++) {
@@ -222,10 +207,11 @@ let lettersFunc = function() {
 				
 					if (checkDashesYes) {
 						tempNewPassWord += randomVowel;
-						dashesFunc()
+						dashesFunc();
+						break;
 					} else {
 						newPassWord += randomVowel;
-						dashesFunc();
+						// dashesFunc();
 					}	
 			};
 		} else { //this makes sure if there is only room for one more letter that only one more will be used.
@@ -237,7 +223,7 @@ let lettersFunc = function() {
 					tempNewPassWord += randomVowel;
 				} else {
 					newPassWord += randomVowel;
-					dashesFunc();
+					// dashesFunc();
 				};
 			};
 		};
@@ -257,18 +243,26 @@ let numbersFunc = function() {
 			dashesFunc();
 		} else {
 			newPassWord += randomArrayNumber;
-			dashesFunc();
+			// dashesFunc();
 		};
 	};
 };
 
+
+
 let dashesFunc = function() {
-	console.log("the tempNewPassWord: ", tempNewPassWord, "and length: ", tempNewPassWord.length);
-	let modulusNumber1 = newPassWord.length % 5;
-	if (checkDashesYes && modulusNumber1 === 0 && newPassWord.length < inputtedNumber) {
-	newPassWord += "-";
+
+	if (tempNewPassWord.length >= 5) {//I use the >= so the tempNewPassword does not exceed a lngth of 5.  Using just === allows the newtempPassword to exceed a length of 5 and wont allow dashes to insert anymore, the tempNewPassword isn't allowed to reset, 
+		console.log("tempNewPassWord: ", tempNewPassWord);
+		newPassWord += tempNewPassWord;
+		tempNewPassWord = "";
+		if (newPassWord.length < inputtedNumber) {
+			newPassWord += "-";
+		};
 	};
 };
+
+
 
 let specialCharactersFunc = function() {
 	if (checkCharactersYes && newPassWord.length < inputtedNumber) {
@@ -280,7 +274,7 @@ let specialCharactersFunc = function() {
 			dashesFunc();
 		} else {
 			newPassWord += randomCharacter;
-			dashesFunc();
+			// dashesFunc();
 		};
 	};
 };
@@ -296,8 +290,8 @@ function noInputWarning() {
 	} else {
 		document.getElementById("new-password").innerHTML = '<p id="the-new-password">' + newPassWord + '</p>';
 		console.warn("The new password: ", newPassWord,".  The new password length: ", newPassWord.length);
-	}
-}
+	};
+};
 
 
 
