@@ -11,7 +11,7 @@ let forLoopNumber;
 let inputtedNumber; 
 let tempNewPassWord = "";
 let newPassWord = "";
-// console.warn("newPassWord length: ", newPassWord, newPassWord.length);
+console.warn("newPassWord length: ", newPassWord, newPassWord.length, "temp: ", tempNewPassWord);
 
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -172,7 +172,19 @@ function generatePassword() {
 		forLoopNumber += 1;
 		console.log("tempPassword in generatePassword: ", tempNewPassWord);
 			// console.log("for loop number dashes checked No: ", forLoopNumber)
-	};	
+	};
+
+	if (newPassWord.length - inputtedNumber === 1) {
+		console.warn("newPassWord before it gets split, popped, and joined: ", newPassWord);
+		var splitted = newPassWord.split("");
+		splitted.pop();
+		newPassWord = splitted.join("");
+		// console.log("hello", splitted);
+		// newPassWord = splitted;
+		// newPassWord = splitted;
+		// newPassWord.join();
+		// console.warn("newPassWord after it gets split, popped, and joined: ", newPassWord);
+	}
 	noInputWarning();
 	// forLoopNumber = 0;
 };
@@ -185,14 +197,27 @@ let lettersFunc = function() {
 		let randomNumber = Math.floor(Math.random() * lettersArray.length);
 		let randomLetter = lettersArray[randomNumber];
 		
-
-		if (checkDashesYes) {
-			tempNewPassWord += randomLetter;
-			dashesFunc();
-		} else {
+		if (!checkDashesYes) {
+			newPassWord += randomLetter;
+			// dashesFunc();
+		} else if (checkDashesYes && inputtedNumber - newPassWord.length < 5) {
+			//what to do now?
 			newPassWord += randomLetter;
 			dashesFunc();
+		} else {
+			if (checkDashesYes) {
+				tempNewPassWord += randomLetter;
+				dashesFunc();
+			};
 		};
+
+		// if (checkDashesYes) {
+		// 	tempNewPassWord += randomLetter;
+		// 	dashesFunc();
+		// } else {
+		// 	newPassWord += randomLetter;
+		// 	dashesFunc();
+		// };
 		
 		if (inputtedNumber - newPassWord.length > 1) {
 			for (let i = 0; i < 2; i++) {
@@ -203,16 +228,31 @@ let lettersFunc = function() {
 				
 					if (splitNewPassword[splitNewPassword.length -1] === "y" || splitNewPassword[splitNewPassword.length -1 === "Y"]) {
 						break;
-					}
-				
-					if (checkDashesYes) {
-						tempNewPassWord += randomVowel;
-						dashesFunc();
-						break;
-					} else {
+					};
+					
+					if (!checkDashesYes) {
 						newPassWord += randomVowel;
 						// dashesFunc();
-					}	
+					
+					} else if (checkDashesYes && inputtedNumber - newPassWord.length < 5) {
+					//what to do now?
+						newPassWord += randomLetter;
+						dashesFunc();
+					} else {
+						if (checkDashesYes) {
+						tempNewPassWord += randomVowel;
+						dashesFunc();
+						};
+					};
+				
+					// if (checkDashesYes) {
+					// 	tempNewPassWord += randomVowel;
+					// 	dashesFunc();
+					// 	break;
+					// } else {
+					// 	newPassWord += randomVowel;
+					// 	// dashesFunc();
+					// }	
 			};
 		} else { //this makes sure if there is only room for one more letter that only one more will be used.
 			if (inputtedNumber - newPassWord.length === 1) {
