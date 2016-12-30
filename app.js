@@ -163,12 +163,18 @@ function generatePassword() {
 	};
 
 	//Sometimes at the end of the five characters and next the dash an extra character is automatically added and I can't figure out the reason, but it never exceeds 1 character and it doesn't always happen. So, if it does this if conditional is there to pop off the last unwanted character.
-	if (newPassWord.length - inputtedNumber === 1) {//< 0 loop through and pop off any extras
+	if (newPassWord.length > inputtedNumber) {//< 0 loop through and pop off any extras
+		let diffNum = newPassWord.length - inputtedNumber;
+		for (let i = 0; i < diffNum; i++) {
+			var splitted = newPassWord.split("");
+			splitted.pop();
+			newPassWord = splitted.join("");
+			if (newPassWord.length === inputtedNumber) {
+				break;
+			};
+		};
 		console.warn("newPassWord before it gets split, popped, and joined: ", newPassWord);
-		var splitted = newPassWord.split("");
-		splitted.pop();
-		newPassWord = splitted.join("");
-	}
+	};
 	noInputWarning();
 };
 
