@@ -1,5 +1,7 @@
 "use strict"
 
+/*This was a fun app to make and good practice for some raw javascript.  I am sure that there is so much more functionality that could be created and implemented here and maybe I will get busy doing it some other day, but at this point is it fully usable and I will leave it for now just the way it is. */
+
 console.log("WELCOME TO THE PASSWORD GENERATOR")
 let checkCharactersYes = false;
 let checkCharactersNo = false;
@@ -151,6 +153,7 @@ function generatePassword() {
 	forLoopNumber = 0;
 	newPassWord = "";
 	inputtedNumber = document.getElementById("characterNumberId").value;
+	console.log("the inputtedNumber: ", inputtedNumber);
 
 	for (let i = 0; i < inputtedNumber; i++) {
 
@@ -162,18 +165,19 @@ function generatePassword() {
 		forLoopNumber += 1;
 	};
 
-	//Sometimes at the end of the five characters and next the dash an extra character is automatically added and I can't figure out the reason, but it never exceeds 1 character and it doesn't always happen. So, if it does this if conditional is there to pop off the last unwanted character.
-	if (newPassWord.length > inputtedNumber) {//< 0 loop through and pop off any extras
+	//Sometimes at the end of the five characters and next the dash an extra character is automatically added and I can't figure out the reason, but it never exceeds 1 character and it doesn't always happen. So, if it does, this if conditional is here to pop off the last unwanted character/s if it so happens.
+	if (newPassWord.length > inputtedNumber) {
 		let diffNum = newPassWord.length - inputtedNumber;
+		console.log("newPassWord before it gets split, popped, and joined: ", newPassWord, newPassWord.length);
 		for (let i = 0; i < diffNum; i++) {
 			var splitted = newPassWord.split("");
 			splitted.pop();
 			newPassWord = splitted.join("");
 			if (newPassWord.length === inputtedNumber) {
-				break;
+				break;//this might not be needed
 			};
 		};
-		console.warn("newPassWord before it gets split, popped, and joined: ", newPassWord);
+		console.warn("newPassWord after it gets split, popped, and joined: ", newPassWord);
 	};
 	noInputWarning();
 };
@@ -182,7 +186,6 @@ function generatePassword() {
 
 let lettersFunc = function() {
 	if (newPassWord.length < inputtedNumber) {
-		console.log("the inputtedNumber: ", inputtedNumber);
 		let randomNumber = Math.floor(Math.random() * lettersArray.length);
 		let randomLetter = lettersArray[randomNumber];
 		
@@ -259,7 +262,6 @@ let numbersFunc = function() {
 let dashesFunc = function() {
 
 	if (tempNewPassWord.length >= 5) {//I use the >= so the tempNewPassword does not exceed a lngth of 5.  Using just === allows the newTempPassword to exceed a length of 5 and won't allow dashes to insert anymore, the tempNewPassword isn't allowed to reset, 
-		console.log("tempNewPassWord: ", tempNewPassWord);
 		newPassWord += tempNewPassWord;
 		tempNewPassWord = "";
 		if (newPassWord.length < inputtedNumber) {
@@ -293,7 +295,7 @@ function noInputWarning() {
 			document.getElementById("new-password").innerHTML = '<p>' + 'New password goes here.' + '</p>';
 		}, 2000);
 	} else {
-		console.warn("The new password: ", newPassWord,".  The new password length: ", newPassWord.length);
+		console.warn("The new password: ", newPassWord,  "The new password length: ", newPassWord.length);
 		document.getElementById("new-password").innerHTML = '<p id="the-new-password">' + newPassWord + '</p>';
 		document.getElementById("password-length").innerHTML = '<p id="password-length">' + 'New Password Length: ' + newPassWord.length + '</p>';
 	};
