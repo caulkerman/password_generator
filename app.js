@@ -1,7 +1,7 @@
 "use strict"
 
 /*This was a fun app to make and good practice for some raw javascript.  I am sure that there is so much more functionality that could be created and implemented here and maybe I will get busy doing it some other day, but at this point is it fully usable and I will leave it for now just the way it is. */
-
+/*Known bug: When using dashes, it will often output a password with 3 repeating characters such as ICoEL-LLf or A4*:8-ttth at and around the dash */
 console.log("WELCOME TO THE PASSWORD GENERATOR")
 let checkCharactersYes = false;
 let checkCharactersNo = false;
@@ -214,9 +214,9 @@ let lettersFunc = function() {
 					
 				if (!checkDashesYes) {
 					newPassWord += randomVowel;
-					
 				} else if (checkDashesYes && inputtedNumber - newPassWord.length < 5) {
-					newPassWord += randomLetter;
+					// debugger;
+					newPassWord += randomVowel;
 					dashesFunc();
 				} else {
 					if (checkDashesYes) {
