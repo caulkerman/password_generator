@@ -2,6 +2,10 @@ html {
 	font-family: sans-serif;
 }
 
+.container-div {
+	margin: auto 0;
+}
+
 p {
 	font-size: 1.15em;
 }
