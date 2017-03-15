@@ -153,6 +153,23 @@ function generatePassword() {
 	forLoopNumber = 0;
 	newPassWord = "";
 	inputtedNumber = document.getElementById("characterNumberId").value;
+
+	if (inputtedNumber === "" || inputtedNumber === undefined) {
+		console.log("NO inputted number entered")
+		document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
+		return;
+	};
+
+	if (inputtedNumber < 1) {
+		lowNumber();
+		return;
+	};
+
+	if (inputtedNumber > 127) {
+		highNumber();
+		return;
+	}
+
 	console.log("the inputtedNumber: ", inputtedNumber);
 
 	for (let i = 0; i < inputtedNumber; i++) {
@@ -287,6 +304,9 @@ let specialCharactersFunc = function() {
 };
 
 
+
+
+
 function noInputWarning() {
 	document.getElementById("characterNumberId").value = "";
 	if (!inputtedNumber) {
@@ -301,6 +321,26 @@ function noInputWarning() {
 	};
 };
 
+function lowNumber() {
+	document.getElementById("characterNumberId").value = "";
+	console.log("lowNumber has fired");
+	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number greater than 0' + '</p>';
+	setTimeout(function() {
+		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
+		document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
+	}, 2000);
+
+};
+
+function highNumber() {
+	document.getElementById("characterNumberId").value = "";
+	console.log("highNumber has fired")
+	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number less than 127' + '</p>';
+	setTimeout(function() {
+		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
+		document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
+	}, 2000);
+};
 
 
 

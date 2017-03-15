@@ -24,6 +24,11 @@ h1 {
 	color: red;
 }
 
+#bad-number {
+	font-size: 26px;
+	color: red;
+}
+
 #the-new-password {
 	font-size: 1.3em;
 	color: blue;
