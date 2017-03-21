@@ -351,7 +351,7 @@ function highNumber() {
 		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
 	}, 2000);
 	pWordFlag = false;
-	
+
 };
 
 
