@@ -323,22 +323,20 @@ function noInputWarning() {
 
 function lowNumber() {
 	document.getElementById("characterNumberId").value = "";
-	console.log("lowNumber has fired");
+	document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number greater than 0' + '</p>';
 	setTimeout(function() {
 		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
-		document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	}, 2000);
 
 };
 
 function highNumber() {
 	document.getElementById("characterNumberId").value = "";
-	console.log("highNumber has fired")
+	document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number less than 127' + '</p>';
 	setTimeout(function() {
 		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
-		document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	}, 2000);
 };
 

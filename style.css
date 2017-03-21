@@ -3,11 +3,15 @@ html {
 }
 
 .container-div {
-	margin: auto 0;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	/*padding-left: 50px;*/
 }
 
 p {
 	font-size: 1.15em;
+	word-wrap: break-word;
 }
 
 h1 {
@@ -16,12 +20,16 @@ h1 {
 
 .new-password-div {
 	margin: 20px 0 20px 0;
-	width: 50%;
+	/*width: 50%;*/
 	/*height: 50px;*/
 }
 
 #new-password-id {
 	color: red;
+}
+
+#new-password {
+	font-size: x-large;
 }
 
 #bad-number {
@@ -84,4 +92,43 @@ input[type=checkbox]:hover {
 
 #password-length {
 	font-size: .9em;
+}
+
+
+
+
+/*SMARTPHONE SIZE SCREENS*/
+@media only screen and (min-width: 15em) and (max-width: 30em) {
+	
+	.container-div {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		/*padding-left: 50px;*/
+	}	
+
+	#characters-div {
+		height: 105px;
+	}
+
+	p#bad-number {
+		height:105px;
+	}
+}
+
+
+/*TABLET SIZE SCREENS*/
+@media only screen and (min-width: 30em) and (max-width: 60em) {
+
+	.container-div {
+		/*padding-left: 40px;*/
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+		/*padding-left: 50px;*/
+	}	
+
+	p {
+		font-size: x-large;
+	}
 }
