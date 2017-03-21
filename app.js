@@ -13,6 +13,8 @@ let forLoopNumber;
 let inputtedNumber; 
 let tempNewPassWord = "";
 let newPassWord = "";
+let passwordLengthP = document.querySelector("#password-length")
+let pWordFlag;
 
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -161,11 +163,13 @@ function generatePassword() {
 	};
 
 	if (inputtedNumber < 1) {
+		pWordFlag = true;
 		lowNumber();
 		return;
 	};
 
 	if (inputtedNumber > 127) {
+		pWordFlag = true;
 		highNumber();
 		return;
 	}
@@ -317,7 +321,11 @@ function noInputWarning() {
 	} else {
 		console.warn("The new password: ", newPassWord,  "The new password length: ", newPassWord.length);
 		document.getElementById("new-password").innerHTML = '<p id="the-new-password">' + newPassWord + '</p>';
-		document.getElementById("password-length").innerHTML = '<p id="password-length">' + 'New Password Length: ' + newPassWord.length + '</p>';
+		if (pWordFlag === false || pWordFlag === undefined) {
+			console.log(pWordFlag);
+			document.getElementById("password-length").innerHTML = '<p id="password-length">' + 'New Password Length: ' + newPassWord.length + '</p>';
+			passwordLengthP.style.visibility = "visible";
+		};
 	};
 };
 
@@ -325,19 +333,25 @@ function lowNumber() {
 	document.getElementById("characterNumberId").value = "";
 	document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number greater than 0' + '</p>';
+	if (pWordFlag) {
+		passwordLengthP.style.visibility = "hidden";
+	}
 	setTimeout(function() {
 		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
 	}, 2000);
-
+	pWordFlag = false;
 };
 
 function highNumber() {
 	document.getElementById("characterNumberId").value = "";
 	document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number less than 127' + '</p>';
+	passwordLengthP.style.visibility = "hidden";
 	setTimeout(function() {
 		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
 	}, 2000);
+	pWordFlag = false;
+	
 };
 
 
