@@ -15,15 +15,10 @@ let tempNewPassWord = "";
 let newPassWord = "";
 let passwordLengthP = document.querySelector("#password-length")
 let pWordFlag;
-
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
 let lettersArray = ["B", "b", "C", "c", "D", "d", "F", "f", "G", "g", "H", "h", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Z", "z"];
-
 let vowelsArray = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u", "Y", "y"];
-
 let specialCharactersArray = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "_", "/", ":", ";", "=", "@", "`", "~", '"', "^"];
-
 let funcArray = [];
 
 
@@ -155,7 +150,6 @@ function generatePassword() {
 	forLoopNumber = 0;
 	newPassWord = "";
 	inputtedNumber = document.getElementById("characterNumberId").value;
-
 	if (inputtedNumber === "" || inputtedNumber === undefined) {
 		console.log("NO inputted number entered")
 		document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
@@ -312,7 +306,7 @@ let specialCharactersFunc = function() {
 
 
 function noInputWarning() {
-	document.getElementById("characterNumberId").value = "";
+	// document.getElementById("characterNumberId").value = "";
 	if (!inputtedNumber) {
 		document.getElementById("new-password").innerHTML = '<p id="new-password-id">' + 'You must enter a number of characters' + '</p>';
 		setTimeout(function() {
@@ -322,7 +316,6 @@ function noInputWarning() {
 		console.warn("The new password: ", newPassWord,  "The new password length: ", newPassWord.length);
 		document.getElementById("new-password").innerHTML = '<p id="the-new-password">' + newPassWord + '</p>';
 		if (pWordFlag === false || pWordFlag === undefined) {
-			console.log(pWordFlag);
 			document.getElementById("password-length").innerHTML = '<p id="password-length">' + 'New Password Length: ' + newPassWord.length + '</p>';
 			passwordLengthP.style.visibility = "visible";
 		};
