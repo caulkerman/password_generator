@@ -1,15 +1,19 @@
-html {
+body, html {
 	font-family: sans-serif;
+	padding: 0;
+	margin: 0;
 }
 
 .container-div {
 	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
+	/*border: solid red 2px;*/
+	padding-left: 3%;
 	/*padding-left: 50px;*/
 }
 
-p {
+p#the-new-password {
 	font-size: 1.15em;
 	word-wrap: break-word;
 }

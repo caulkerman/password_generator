@@ -1,8 +1,8 @@
-"use strict"
+"use strict";
 
 /*This was a fun app to make and good practice for some raw javascript.  I am sure that there is so much more functionality that could be created and implemented here and maybe I will get busy doing it some other day, but at this point is it fully usable and I will leave it for now just the way it is. */
 /*Known bug: When using dashes, it will often output a password with 3 repeating characters such as ICoEL-LLf or A4*:8-ttth at and around the dash */
-console.log("WELCOME TO THE PASSWORD GENERATOR")
+console.log("WELCOME TO THE PASSWORD GENERATOR");
 let checkCharactersYes = false;
 let checkCharactersNo = false;
 let checkNumbersYes = false;
@@ -10,12 +10,12 @@ let checkNumbersNo = false;
 let checkDashesYes = false;
 let checkDashesNo = false;
 let forLoopNumber;
-let inputtedNumber; 
+let inputtedNumber;
 let tempNewPassWord = "";
 let newPassWord = "";
-let passwordLengthP = document.querySelector("#password-length")
+let passwordLengthP = document.querySelector("#password-length");
 let pWordFlag;
-let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let lettersArray = ["B", "b", "C", "c", "D", "d", "F", "f", "G", "g", "H", "h", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Z", "z"];
 let vowelsArray = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u", "Y", "y"];
 let specialCharactersArray = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "_", "/", ":", ";", "=", "@", "`", "~", '"', "^"];
@@ -151,7 +151,7 @@ function generatePassword() {
 	newPassWord = "";
 	inputtedNumber = document.getElementById("characterNumberId").value;
 	if (inputtedNumber === "" || inputtedNumber === undefined) {
-		console.log("NO inputted number entered")
+		console.error("NO inputted number entered");
 		document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 		return;
 	};
@@ -171,9 +171,7 @@ function generatePassword() {
 	console.log("the inputtedNumber: ", inputtedNumber);
 
 	for (let i = 0; i < inputtedNumber; i++) {
-
 		if (forLoopNumber <= inputtedNumber &&  newPassWord.length <= inputtedNumber) {
-				
 			let randomNumber = Math.floor(Math.random() * funcArray.length);
 			funcArray[randomNumber]();
 		};
@@ -183,7 +181,7 @@ function generatePassword() {
 	//Sometimes at the end of the five characters and next the dash an extra character is automatically added and I can't figure out the reason, but it never exceeds 1 character and it doesn't always happen. So, if it does, this if conditional is here to pop off the last unwanted character/s if it so happens.
 	if (newPassWord.length > inputtedNumber) {
 		let diffNum = newPassWord.length - inputtedNumber;
-		console.log("newPassWord before it gets split, popped, and joined: ", newPassWord, newPassWord.length);
+		// console.log("newPassWord before it gets split, popped, and joined: ", newPassWord, newPassWord.length);
 		for (let i = 0; i < diffNum; i++) {
 			var splitted = newPassWord.split("");
 			splitted.pop();
@@ -192,7 +190,7 @@ function generatePassword() {
 				break;//this might not be needed
 			};
 		};
-		console.warn("newPassWord after it gets split, popped, and joined: ", newPassWord);
+		// console.warn("newPassWord after it gets split, popped, and joined: ", newPassWord);
 	};
 	noInputWarning();
 };
@@ -203,7 +201,6 @@ let lettersFunc = function() {
 	if (newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * lettersArray.length);
 		let randomLetter = lettersArray[randomNumber];
-		
 		if (!checkDashesYes) {
 			newPassWord += randomLetter;
 		} else if (checkDashesYes && inputtedNumber - newPassWord.length < 5) {
@@ -215,18 +212,14 @@ let lettersFunc = function() {
 				dashesFunc();
 			};
 		};
-		
 		if (inputtedNumber - newPassWord.length > 1) {
 			for (let i = 0; i < 2; i++) {
 				let randomNumber = Math.floor(Math.random() * vowelsArray.length);
 				let randomVowel = vowelsArray[randomNumber];
-				
 				let splitNewPassword = newPassWord.split("");
-				
 				if (splitNewPassword[splitNewPassword.length -1] === "y" || splitNewPassword[splitNewPassword.length -1 === "Y"]) {
 						break;
 				};
-					
 				if (!checkDashesYes) {
 					newPassWord += randomVowel;
 				} else if (checkDashesYes && inputtedNumber - newPassWord.length < 5) {
@@ -244,7 +237,6 @@ let lettersFunc = function() {
 			if (inputtedNumber - newPassWord.length === 1) {
 				let randomNumber = Math.floor(Math.random() * vowelsArray.length);
 				let randomVowel = vowelsArray[randomNumber];
-			
 				if (checkDashesYes) {
 					tempNewPassWord += randomVowel;
 				} else {
@@ -262,7 +254,6 @@ let numbersFunc = function() {
 	if (checkNumbersYes && newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * numbersArray.length);
 		let randomArrayNumber = numbersArray[randomNumber];
-
 		if (checkDashesYes) {
 			tempNewPassWord += randomArrayNumber;
 			dashesFunc();
@@ -276,7 +267,7 @@ let numbersFunc = function() {
 
 let dashesFunc = function() {
 
-	if (tempNewPassWord.length >= 5) {//I use the >= so the tempNewPassword does not exceed a lngth of 5.  Using just === allows the newTempPassword to exceed a length of 5 and won't allow dashes to insert anymore, the tempNewPassword isn't allowed to reset, 
+	if (tempNewPassWord.length >= 5) {//I use the >= so the tempNewPassword does not exceed a length of 5.  Using just === allows the newTempPassword to exceed a length of 5 and won't allow dashes to insert anymore, the tempNewPassword isn't allowed to reset, 
 		newPassWord += tempNewPassWord;
 		tempNewPassWord = "";
 		if (newPassWord.length < inputtedNumber) {
@@ -291,7 +282,6 @@ let specialCharactersFunc = function() {
 	if (checkCharactersYes && newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
 		let randomCharacter = specialCharactersArray[randomNumber];
-
 		if (checkDashesYes) {
 			tempNewPassWord += randomCharacter;
 			dashesFunc();
@@ -338,7 +328,7 @@ function lowNumber() {
 function highNumber() {
 	document.getElementById("characterNumberId").value = "";
 	document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
-	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number less than 127' + '</p>';
+	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number less than 128' + '</p>';
 	passwordLengthP.style.visibility = "hidden";
 	setTimeout(function() {
 		document.getElementById("input-div").innerHTML = '<input id="characterNumberId" type="number" autofocus>';
