@@ -1,7 +1,7 @@
 "use strict";
 
 /*This was a fun app to make and good practice for some raw javascript.  I am sure that there is so much more functionality that could be created and implemented here and maybe I will get busy doing it some other day, but at this point is it fully usable and I will leave it for now just the way it is. */
-/*Known bug: When using dashes, it will often output a password with 3 repeating characters such as ICoEL-LLf or A4*:8-ttth at and around the dash. Also, when using dashes with with passwords less than 5 characters long you will often get funky results */
+/*Known bug: When using dashes, it will often output a password with 3 repeating characters such as ICoEL-LLf or A4*:8-ttth at and around the dash. Also, when using dashes with with passwords less than 5 characters long you will often get funky results. */
 console.log("WELCOME TO THE PASSWORD GENERATOR");
 let checkCharactersYes = false;
 let checkCharactersNo = false;
@@ -22,7 +22,7 @@ let specialCharactersArray = ["!", "#", "$", "%", "&", "(", ")", "*", "+", "_", 
 let funcArray = [];
 
 
-function checkBoxCharactersYes() {
+const checkBoxCharactersYes = () => {
 	if (checkCharactersYes) {
 		checkCharactersYes = false;
 		document.getElementById("checkbox-characters-yes").checked = false;
@@ -45,7 +45,7 @@ function checkBoxCharactersYes() {
 
 };
 
-function checkBoxCharactersNo() {
+let checkBoxCharactersNo = () => {
 	if (checkCharactersNo) {
 		checkCharactersNo = false;
 		document.getElementById("checkbox-characters-no").checked = false;
@@ -67,7 +67,7 @@ function checkBoxCharactersNo() {
 	};
 };
 
-function checkBoxNumbersYes() {
+const checkBoxNumbersYes = () => {
 	if(checkNumbersYes) {
 		checkNumbersYes = false;
 		document.getElementById("checkbox-numbers-yes").checked = false;
@@ -88,7 +88,7 @@ function checkBoxNumbersYes() {
 	};
 };
 
-function checkBoxNumbersNo() {
+const checkBoxNumbersNo = () => {
 	if (checkNumbersNo) {
 		checkNumbersNo = false;
 		document.getElementById("checkbox-numbers-no").checked = false;
@@ -109,7 +109,7 @@ function checkBoxNumbersNo() {
 	};
 };
 
-function checkBoxDashesYes() {
+const checkBoxDashesYes = () => {
 	if (checkDashesYes) {
 		checkDashesYes = false;
 		document.getElementById("checkbox-dashes-yes").checked = false;
@@ -127,7 +127,7 @@ function checkBoxDashesYes() {
 	};
 };
 
-function checkBoxDashesNo() {
+const checkBoxDashesNo = () => {
 	if (checkDashesNo) {
 		checkDashesNo = false;
 		document.getElementById("checkbox-dashes-no").checked = false;
@@ -146,7 +146,7 @@ function checkBoxDashesNo() {
 };
 
 
-function generatePassword() {
+const generatePassword = () => {
 	forLoopNumber = 0;
 	newPassWord = "";
 	inputtedNumber = document.getElementById("characterNumberId").value;
@@ -192,12 +192,17 @@ function generatePassword() {
 		};
 		// console.warn("newPassWord after it gets split, popped, and joined: ", newPassWord);
 	};
+	//The below "if" statement is needed because when the add dashes option is checked and any and all of the other options are checked and the password is less than 5 characters the new password is often less than the desired amount of characters long. This "if" statement calls the the generatePassword function again and it cycles through until we have the correct amount of characters in the new password if it is less than 5 characters.
+	if (newPassWord.length < inputtedNumber) {
+		generatePassword();
+		console.error("Had to re-run the function");
+	};
 	noInputWarning();
 };
 
 
 
-let lettersFunc = function() {
+const lettersFunc = () => {
 	if (newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * lettersArray.length);
 		let randomLetter = lettersArray[randomNumber];
@@ -250,7 +255,7 @@ funcArray.push(lettersFunc);
 
 
 
-let numbersFunc = function() {
+const numbersFunc = () => {
 	if (checkNumbersYes && newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * numbersArray.length);
 		let randomArrayNumber = numbersArray[randomNumber];
@@ -265,7 +270,7 @@ let numbersFunc = function() {
 
 
 
-let dashesFunc = function() {
+const dashesFunc = () => {
 
 	if (tempNewPassWord.length >= 5) {//I use the >= so the tempNewPassword does not exceed a length of 5.  Using just === allows the newTempPassword to exceed a length of 5 and won't allow dashes to insert anymore, the tempNewPassword isn't allowed to reset, 
 		newPassWord += tempNewPassWord;
@@ -278,7 +283,7 @@ let dashesFunc = function() {
 
 
 
-let specialCharactersFunc = function() {
+const specialCharactersFunc = () => {
 	if (checkCharactersYes && newPassWord.length < inputtedNumber) {
 		let randomNumber = Math.floor(Math.random() * specialCharactersArray.length);
 		let randomCharacter = specialCharactersArray[randomNumber];
@@ -295,7 +300,7 @@ let specialCharactersFunc = function() {
 
 
 
-function noInputWarning() {
+const noInputWarning = () => {
 	// document.getElementById("characterNumberId").value = "";
 	if (!inputtedNumber) {
 		document.getElementById("new-password").innerHTML = '<p id="new-password-id">' + 'You must enter a number of characters' + '</p>';
@@ -312,7 +317,7 @@ function noInputWarning() {
 	};
 };
 
-function lowNumber() {
+const lowNumber = () => {
 	document.getElementById("characterNumberId").value = "";
 	document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number greater than 0' + '</p>';
@@ -325,7 +330,7 @@ function lowNumber() {
 	pWordFlag = false;
 };
 
-function highNumber() {
+const highNumber = () => {
 	document.getElementById("characterNumberId").value = "";
 	document.getElementById("new-password").innerHTML = '<p id="new-password">' + 'New password goes here.' + '</p>';
 	document.getElementById("input-div").innerHTML = '<p id="bad-number">' + 'You must enter a number less than 128' + '</p>';
