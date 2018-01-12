@@ -170,11 +170,7 @@ input[type=checkbox]:hover {
 		/*padding-left: 50px;*/
 	}	
 
-	#character-div {
-		
-	}
-
-	p {
-		/*font-size: x-large;*/
+	div.footer-div {
+		height: 150px;
 	}
 }
