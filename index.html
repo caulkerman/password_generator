@@ -9,24 +9,24 @@
 	<div class="container-div">
 		<h1>Password Generator</h1>
 		<div id="characters-div">
-			<p id="long">How many characters long?</p>
+			<!-- <p id="long">How many characters long?</p> -->
 			<div id="input-div">
-				<input id="characterNumberId" type="number" min="1" max="127" autofocus>
+				<input id="characterNumberId" type="number" min="1" max="127" placeholder="How many characters long?" autofocus>
 			</div>
 		</div>
 		<div class="check-box-div">
-			<p>Do you want to use special characters?</p>
+			<p class="do-you-want">Do you want to use special characters?</p>
 			<!-- Maybe here we can add a section that will show up on demand that shows all available special characters and the use can sort through them and choose the ones wanted -->
 			<input type="checkbox" id="checkbox-characters-yes" onClick="checkBoxCharactersYes()"/>Yes
 			<input type="checkbox" id="checkbox-characters-no" onClick="checkBoxCharactersNo()"/>No
 		</div>
 		<div class="check-box-div">
-			<p>Do you want to use numbers?</p>
+			<p class="do-you-want">Do you want to use numbers?</p>
 			<input type="checkbox" id="checkbox-numbers-yes" onClick="checkBoxNumbersYes()" />Yes
 			<input type="checkbox" id="checkbox-numbers-no" onClick="checkBoxNumbersNo()" />No
 		</div>
 		<div class="check-box-div">
-			<p id="dashes">Do you want to have dashes?</p>
+			<p id="dashes" class="do-you-want">Do you want to have dashes?</p>
 			<input type="checkbox" id="checkbox-dashes-yes" onClick="checkBoxDashesYes()" />Yes
 			<input type="checkbox" id="checkbox-dashes-no" onClick="checkBoxDashesNo()" />No
 		</div>
@@ -37,6 +37,7 @@
 			<p id="new-password">New password goes here.</p>
 			<p id="password-length"></p>
 		</div>
+		<div class="footer-div"></div>
 	</div>
 <script type="text/javascript" src="app.js"></script>
 </body>
