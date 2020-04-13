@@ -8,8 +8,7 @@ body, html {
 .container-div {
 	/*height: 100%;*/
 	width: 40%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 60px auto;
 	border: solid #505968 1px;
 	padding-left: 3%;
 	background-color: #FFFFFF;
